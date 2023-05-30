@@ -1,4 +1,4 @@
-To set up a Laravel project for production, follow these steps:
+Certainly! Here's the updated list of steps for setting up a Laravel project for production, including the addition of the `storage:link` step:
 
 1. Install Composer Dependencies:
    Run the following command to install the required PHP dependencies using Composer:
@@ -79,7 +79,37 @@ To set up a Laravel project for production, follow these steps:
 11. Enable Caching (Optional):
     If your production environment supports caching, you can enable various caching mechanisms in Laravel to improve performance. This includes caching the entire views, routes, and configuration files. Refer to the Laravel documentation for more details on caching options.
 
-12. Set Up Scheduled Tasks (Optional):
+12. Create Symbolic Link for Storage:
+    Run the following command to create a symbolic link from the `public/storage` directory to the `storage/app/public` directory:
+    ```
+    php artisan storage:link
+    ```
+
+    This command will create a symbolic link that allows accessing files stored in
+
+ the `storage/app/public` directory via the `public/storage` URL.
+
+13. Set Up Scheduled Tasks (Optional):
+    If your application requires periodic tasks to be executed, such as scheduled jobs or cron jobs, set them up on your server using Laravel's task scheduling feature. Refer to the Laravel documentation for instructions on setting up scheduled tasks.
+
+
+
+14. Create Symbolic Link for Storage:
+    Run the following command to create a symbolic link from the `public/storage` directory to the `storage/app/public` directory:
+    ```
+    php artisan storage:link
+    ```
+
+    This command will create a symbolic link that allows accessing files stored in the `storage/app/public` directory via the `public/storage` URL.
+
+    Ensure that the appropriate file permissions are set for the `storage` directory before running the command. Use the following command to set the permissions recursively:
+    ```
+    chmod -R 775 storage
+    ```
+
+    This command sets the directory permissions to `775`, allowing the web server to write to the storage directory. Additionally, make sure that the ownership of the `storage` directory is properly set to the web server user (e.g., `www-data` for Apache).
+
+15. Set Up Scheduled Tasks (Optional):
     If your application requires periodic tasks to be executed, such as scheduled jobs or cron jobs, set them up on your server using Laravel's task scheduling feature. Refer to the Laravel documentation for instructions on setting up scheduled tasks.
 
 By following these steps, you should have a Laravel project properly configured for production deployment.
